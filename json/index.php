@@ -83,5 +83,8 @@ if($success){
 		</div>
 	</div>
 
+	<p>&nbsp;</p>
+	<p>Goto <a href="admin/">Admin</a> to get started with AngularJS.</p>
+
 </body>
 </html>

@@ -1,12 +1,16 @@
 <?php
 
+$uri = $_SERVER['REQUEST_URI'];
+$uris = explode('/', $uri);
+$url = array_pop($uris);
+
 $p = $_POST;
 $m = new Mongo();
 $db = $m->selectDB('klmug_json');
 $collection = new MongoCollection($db, 'posts');
 $collection->ensureIndex(array('slug'=>1), array('unique'=>true));
 
-if(isset($p['s'])){ $slug = $p['s']; }else{ $slug = 'hello-world'; }
+if(isset($p['s'])){ $slug = $p['s']; }else{ $slug = $url; }
 
 $post = array(
   "title" 		=> "Hello World",
@@ -19,11 +23,13 @@ $post = array(
 $success = $collection->insert($post); // insert stores as array
 
 if($success){
-
-	$all = $collection->find();
 	$results = array();
-	foreach($all as $result){
-		$results[] = $result;
+	if($slug != 'blog' && $slug != '') $results[] = $collection->findOne(array('slug'=>$slug));
+	else {
+		$all = $collection->find();
+		foreach($all as $result){
+			$results[] = $result;
+		}
 	}
 	if(isset($_POST['s'])) {
 		echo json_encode($results);
@@ -42,13 +48,15 @@ if($success){
 
 <script>
 
+	var post_count = <?php echo count($results); ?>;
     function AngularBlog($scope) {
 		$scope.posts = [];
 		<?php foreach($results as $result){ ?>
 
 			$scope.posts.push({
 				title: "<?php echo $result['title']; ?>",
-				content: "<?php echo $result['content']; ?>"
+				content: "<?php echo $result['content']; ?>",
+				slug: "<?php echo $result['slug']; ?>"
 			});
 
 		<?php } ?>
@@ -64,13 +72,13 @@ if($success){
 
 	<div ng-controller="AngularBlog">
 		<div class="entry" ng-repeat="post in posts">
-			<h1>{{post.title}}</h1>
+			<h1><?php if(count($results)>1){ ?><a href="{{post.slug}}"><?php } ?>{{post.title}}<?php if(count($results)>1){ ?></a><?php } ?></h1>
 			<div ng-bind-html-unsafe="post.content"></div>
 		</div>
 	</div>
 
 	<p>&nbsp;</p>
-	<p>Visit <a href="../admin/">Admin</a>.</p>
+	<p>Visit <a href="../admin/">Admin</a>.<br />Back to Blog <a href="../blog/">Homepage</a></p>
 
 </body>
 </html>

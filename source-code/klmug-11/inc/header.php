@@ -31,6 +31,8 @@ table .centered {
 	padding-left: 0;
 	padding-right: 0;
 	width: 100%;
+	margin-bottom: 0 !important;
+	position: fixed !important;
 }
 .navbar-fixed-top li.active a.btn {
 	color: #757575;
@@ -40,6 +42,12 @@ table .centered {
 p.sublte {
 	opacity: 0.5;
 	color: #EEE;
+}
+.jumbotron .container {
+	padding-top: 45px !important;
+}
+.jumbotron p {
+	font-size: 185%;
 }
 </style>
 <script>
@@ -127,7 +135,7 @@ p.sublte {
 <header class="jumbotron subhead" id="overview">
 	<div class="container with-navbar">
 		<h1>JSON and The Argonauts!</h1>
-		<p class="lead">Guided tour of MongoDB with Handlebars, Mustache and AngularJS</p>
+		<p class="lead">Guided Tour :: MongoDB, Handlebars, Mustache + AngularJS</p>
 		<p class="sublte">-- ( all being used at the same time on the same page ) --</p>
 	</div>
 </header>

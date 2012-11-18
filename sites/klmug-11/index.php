@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang='en' ng-app>
+<head>
+<meta charset='utf-8' />
+<title>JSON and The Argonauts</title>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.mb.js"></script>
+<link media="all" type="text/css" href="css/less.css" id="less-css" rel="stylesheet">
+<style>
+.page-header {
+	height: 50px;
+	margin: 50px 0 0;
+}
+.page-header h1 {
+	font-size: 35px;
+}
+.page-header.top h1 {
+	text-align: center;
+}
+table .centered {
+	text-align: center;
+}
+.navbar-fixed-top {
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
+	border-right: none;
+	border-left: none;
+	padding-left: 0;
+	padding-right: 0;
+	width: 100%;
+}
+.navbar-fixed-top li.active a.btn {
+	color: #757575;
+	background-color: transparent;
+	background-position: 0;
+}
+p.sublte {
+	opacity: 0.5;
+	color: #EEE;
+}
+#intro p {
+	text-align: justify;
+}
+.navbar-fixed-top li {
+	float: none;
+	display: inline-block;
+}
+</style>
+</head>
+<body>
+
+<div class="navbar-inner navbar-fixed-top">
+
+		<div class="container-narrow">
+			<ul class="nav nav-pills" style="margin:10px 0; text-align: center;">
+				<li class="active"><a href="#intro" data-toggle="tab">Intro</a></li>
+				<li><a href="#json" data-toggle="tab">JSON</a></li>
+				<li><a href="#mongodb" data-toggle="tab">MongoDB</a></li>
+				<li><a href="#handlebars" data-toggle="tab">Handlebars</a></li>
+				<li><a href="#angular" data-toggle="tab">AngularJS</a></li>
+				<li><a href="#mustache" data-toggle="tab">Mustache</a></li>
+			</ul>
+		</div>
+
+</div>
+
+<header class="jumbotron subhead" id="overview">
+	<div class="container with-navbar">
+		<h1>JSON and The Argonauts!</h1>
+		<p class="sublte">-- ( Part 1 of 10 - An Interactive Series Dedicated to Building a CMS ) --</p>
+	</div>
+</header>
+
+<div class="container-narrow">
+	<div class="tab-content" style="overflow:inherit;">
+
+<div class="tab-pane active" id="intro">
+
+	<div class="page-header top">
+		<h1>Introductions</h1>
+	</div>
+	<p class="clearfix">&nbsp;</p>
+	<p>My name is <a href="http://twitter.com/m_smalley">Mark Smalley</a>, and I help to organize the Kuala Lumpur monthly MongoDB User-Group in Malaysia. <a href="https://facebook.com/groups/klmug/">KL MUG</a> was formed in September 2011, and to our discredit, we have not been doing a very good job of keeping track of our material and presentations. We are hoping to change that, which is why we have now also launched the <a href="https://github.com/r1dotmy/klmugs">KL MUG Git-Repo</a>.</p>
+
+	<hr>
+	
+	<p>In order to play with a working version of this site that has an uber-fancy administration panel that also features MongoDB, Handlebars, AngularJS and Mustache all working together on the same page, please <a href="https://github.com/r1dotmy/klmugs/tree/master/src/klmug-11">fork this other source</a> - which is all part of this entire repository.</p>
+	<p>You will then be able to post new blog entries and see how everything fits together in a really messy way. Nonetheless, both the interactive working version and this static micro-site are merely meant to accompany the following presentation:</p>
+	<p>It was only after noticing the effort it had taken to put it all together that I realized it should become part of a series and be something that evolves over time.</p>
+	
+</div>
+
+<div class="tab-pane" id="json">
+
+	<div class="page-header top">
+		<h1>JSON :: The Full Story</h1>
+	</div>
+	<p class="clearfix">&nbsp;</p>
+	<p>Let's first take a moment to consider what <a href="http://json.org">JSON</a> really is.</p>
+	<p>It seems the website might be the same original one released in 1999, when <a href="http://en.wikipedia.org/wiki/Douglas_Crockford">Douglas Crockford</a> first thought-up JSON, which was originally conceived as a sub-set of functions specifically for JavaScript, which is why it was named JavaScript Object Notation.</p>
+	<p>It quickly became adopted as a <strong>language-independent</strong> data-format, and the rest is history...</p>
+	<p>In PHP, we often transport data around using arrays;</p>
+
+<pre class="prettyprint linenums">
+$data = array(
+    'name' => 'Mark Smalley',
+    'twitter' => 'm_smalley',
+    'blog' => 'smalley.my'
+);
+</pre>
+	<p>If we converted that into a JSON array and then echoed or printed the results:</p>
+
+<pre class="prettyprint linenums">
+$json_data = json_encode($data);
+echo $json_data;
+var_dump($json_data);
+</pre>
+	<p>The end result would be the following JSON-formatted <code>(string)</code>:</p>
+
+<pre class="prettyprint linenums">
+{"name":"Mark Smalley","twitter":"m_smalley","blog":"smalley.my"}
+</pre>
+	<p>As a string, it can be easily transported through <code>$_GET</code> or <code>$_POST</code> requests.</p>
+	<p>And that's it. <strong>It's just data as a string</strong>.</p>
+
+	<hr>
+
+	<h3>So what's this JSONp all about...?</h3>
+	<p>The " <strong>p</strong> " stands for <strong>padding</strong>, but not with pixels, rather with a function. It's one of those hacks that became standardized and eventually accepted as the real way to do things. It all comes down to security and cross-domain policies that make it really tricky to use AJAX requests from one site to another, especially when it comes to transporting data.</p>
+	<p>If our JSON array looked like this:</p>
+
+<pre class="prettyprint linenums">
+{
+    "name" : "Mark Smalley",
+    "twitter" : "m_smalley",
+    "blog" : "smalley.my"
+}
+</pre>
+	<p>JSONp would turn it into something a little like this:</p>
+
+<pre class="prettyprint linenums">
+{jsonp_callback_function({
+    "name" : "Mark Smalley",
+    "twitter" : "m_smalley",
+    "blog" : "smalley.my"
+})}
+</pre>
+
+	<p>Rather than trying to transport data, you transport a function, then call that function from within the same domain to prevent all the cross-site headaches.</p>
+
+	<hr>
+
+	<h3>BSON :: B = Binnary</h3>
+
+	<p>Last but most certainly not least, there's also BSON, but before I dive into that, let's first take a step back and return to JSON, which is after all a data-format.</p>
+	<p>Data formats would not be very useful if they could only store one kind of data type, and so far - we've only be talking about strings.</p>
+	<p>JSON features 6 data-types, whereas BSON features 11 and was built by <a href="http://10gen.com">10gen</a> specifically for mongoDB - so let's compare the available data-types:</p>
+
+	<hr>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+			  <th>TYPE</th>
+			  <th class="centered">JSON</th>
+			  <th class="centered">BSON</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+			  <td>Number</td>
+			  <td class="centered">X</td>
+			  <td class="centered">X</td>
+			</tr>
+			<tr>
+			  <td>String</td>
+			  <td class="centered">X</td>
+			  <td class="centered">X</td>
+			</tr>
+			<tr>
+			  <td>Boolean</td>
+			  <td class="centered">X</td>
+			  <td class="centered">X</td>
+			</tr>
+			<tr>
+			  <td>Array</td>
+			  <td class="centered">X</td>
+			  <td class="centered">X</td>
+			</tr>
+			<tr>
+			  <td>Object</td>
+			  <td class="centered">X</td>
+			  <td class="centered">X</td>
+			</tr>
+			<tr>
+			  <td>Null</td>
+			  <td class="centered">X</td>
+			  <td class="centered">X</td>
+			</tr>
+			<tr>
+			  <td>Float</td>
+			  <td class="centered">-</td>
+			  <td class="centered">X</td>
+			</tr>
+			<tr>
+			  <td>Date</td>
+			  <td class="centered">-</td>
+			  <td class="centered">X</td>
+			</tr>
+			<tr>
+			  <td>Regular Expression</td>
+			  <td class="centered">-</td>
+			  <td class="centered">X</td>
+			</tr>
+			<tr>
+			  <td>JavaScript Code</td>
+			  <td class="centered">-</td>
+			  <td class="centered">X</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<p>But wait, there's only ten data types listed above and you said BSON features 11.</p>
+	<p>BSON can store BSON arrays and Byte arrays - listed above as just arrays.</p>
+
+	<hr>
+
+	<p>And so ends our history lesson for the day.</p>
+	<p>For more detailed information - please visit <a href="https://www.google.com.my/search?q=getting+started+with+json">this link</a> for <strong style="font-size:200%">ALL</strong> your questions and answers.</p>
+
+</div>
+
+<div class="tab-pane" id="mongodb">
+
+	<div class="page-header top">
+		<h1>MongoDB :: JSON to BSON</h1>
+	</div>
+	<p class="clearfix">&nbsp;</p>
+	<p>Before we can dive-in and take a closer look at the other Argonauts, we first need data.</p>
+	<p>In order to start adding data to <a href="http://mongodb.org">MongoDB</a> via AJAX and JSON whilst using PHP and jQuery, we will need a <code>&lt;form&gt;</code>. The source code for the " <strong>add new post</strong> " feature looks like this:</p>
+
+<pre class="prettyprint linenums">
+&lt;form class="form-fluid"&gt;
+    &lt;input type="text" id="title" name="title" placeholder="Title" /&gt;
+    &lt;textarea id="content" name="content" placeholder="Content"&gt;&lt;/textarea&gt;
+    &lt;button type="submit" class="btn btn-info pull-right"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</pre>
+
+	<p>And then we can apply some simple <a href="http://jquery.com">jQuery</a> to it:</p>
+
+<pre class="prettyprint linenums">
+&lt;script&gt;
+$(document).ready(function(){
+    $('form.form-fluid').live('submit', function(e){
+        var form = $(this);
+        var data = $(form).serializeArray();
+        var json = JSON.stringify(data);
+        e.preventDefault();
+        $.ajax({
+            url: 'ajax/insert.php',
+            dataType: 'JSON',
+            type: 'POST',
+            data: json,
+            success: function(results){
+                if(results.message) alert(results.message);
+                if(results.success) $(form).find('input, textarea').val('');
+            }
+        });
+    });
+});
+&lt;/script&gt;
+</pre>
+
+	<p>It's also worth noting that jQuery supports JSONp too - so assuming you have the mongoDB <a href="http://www.mongodb.org/display/DOCS/PHP+Language+Center">PHP-Drivers</a> installed, <code>ajax/insert.php</code> file accessed above could then run the following:</p>
+
+<pre class="prettyprint linenums">
+&lt;?php
+// Function for converting titles to slugs
+function mb_string_to_slug($src)
+{
+    $src = strtolower(trim($src));
+    $src = preg_replace('/[^a-z0-9-]/', '-', $src);
+    $src = preg_replace('/-+/', "-", $src);
+    return $src;
+}
+
+// Array for sending back progress
+$progress['success'] = false;
+$progress['message'] = 'Unable to add post';
+
+// Connect to MongoDB
+$m = new Mongo();
+$db = $m->selectDB('argonauts');
+$collection = new MongoCollection($db, 'posts');
+
+// Quick and dirty way to ensure slugs are unique right out of the gate
+$collection->ensureIndex(array('slug'=>1), array('unique'=>true));
+
+// Decode JSON data into PHP array
+if(isset($_POST['data'])) $data = json_decode($_POST['data']);
+else $data = false;
+
+// Create an array from the JSON data
+$fields = false;
+if(is_array($data)){
+    foreach($data as $field){
+        $fields[$field->name] = $field->value;
+    }
+}
+
+// Could dump into database as is - but want to add a little structure
+if(isset($data['title'])) $title = $data['title'];
+if(isset($data['content'])) $content = $data['content'];
+
+// Check for required fields
+if(!isset($title) || !isset($content)){
+
+    $progress['message'] = 'Title and Content Required';
+
+}else{
+
+    // Build new array to store in mongoDB
+    $post = array(
+        "title" => $title,
+        "published" => new MongoDate(strtotime("today")),
+        "slug" => mb_string_to_slug($title),
+        "content" => $content
+    );
+
+}
+
+// Try to insert data into MongoDB
+$success = $collection->insert($post);
+if($success)
+{
+    $progress['success'] = true;
+    $progress['message'] = 'Successfully added post';
+}
+
+// Sending progress report back as JSON keeps things simple...
+// Not to mention allowing us to build up arrays with lots of information
+echo json_encode($progress);
+?>
+</pre>
+
+</div>
+
+<div class="tab-pane" id="handlebars">
+
+	<div class="page-header top">
+		<h1>Handlebars :: Minimal Templating</h1>
+	</div>
+	<p class="clearfix">&nbsp;</p>
+	<p>To be honest, Handlebars was one the first of this new generation of templating systems that I used - for it sounded perfect. A fork of Mustache.js that allowed for a bunch of extra cool things that others could not do...</p>
+
+	<hr>
+
+	<h3>Source Code:</h3>
+	<p>Separated into 3 blocks here to prevent parent braces from spoiling PrettyPrint styling :p</p>
+
+<pre class="prettyprint linenums">
+&#91;&#91;#posts&#93;&#93; // The hash essentially starts a foreach
+</pre>
+
+<pre class="prettyprint linenums">
+&lt;section&gt;
+    &lt;h1&gt;
+        &lt;a href="&#91;&#91;slug&#93;&#93;"&gt;&#91;&#91;title&#93;&#93;&lt;/a&gt;
+        &lt;label class="label label-info pull-right"&gt;&#91;&#91;date&#93;&#93;&lt;/label&gt;
+    &lt;/h1&gt;
+    &#91;&#91;&#91;content&#93;&#93;&#93;
+&lt;/section&gt;
+</pre>
+
+<pre class="prettyprint linenums">
+&#91;&#91;/posts&#93;&#93; // The end of the foreach
+</pre>
+
+	<p style="font-weight: bold">Remember to change the square braces to curly braces!</p>
+
+	<hr>
+
+	<p>In the live example, Handlebars.js gets it's data via the following PHP (in the header):</p>
+
+<pre class="prettyprint linenums">
+// Connect to MongoDB
+$m = new Mongo();
+$db = $m->selectDB('argonauts');
+$collection = new MongoCollection($db, 'posts');
+
+$results = array();
+$all = $collection->find();
+foreach($all as $result){
+    $result['date'] = date('D / M / Y', $result['published']->sec);
+    $results[] = $result;
+}
+</pre>
+
+	<p>Which is used with the following spaghetti-based mishmash:</p>
+
+<pre class="prettyprint linenums">
+&lt;script&gt;
+var handlebars_data = new Object();
+handlebars_data.posts = new Array();
+&lt;?php foreach($results as $result){ ?&gt;
+    handlebars_data.posts.push({
+        title: "&lt;?php echo $result['title']; ?&gt;",
+        content: "&lt;?php echo $result['content']; ?&gt;",
+        date: "&lt;?php echo $result['date']; ?&gt;",
+        slug: "&lt;?php echo $result['slug']; ?&gt;"
+    });
+&lt;?php } ?&gt;
+var source = $("#handlebars-controller").html();
+var template = Handlebars.compile(source);
+var html = template(handlebars_data);
+$("#handlebars-controller").html(html);
+&lt;/script&gt;
+</pre>
+
+	<hr>
+	<a href="https://github.com/r1dotmy/klmugs/tree/master/src/klmug-11" class="btn btn-small btn-info pull-right" target="_blank" style="margin-top:5px;">Potentially Live Demo</a>
+
+</div>
+
+<div class="tab-pane" id="mustache">
+
+	<div class="page-header top">
+		<h1>Mustache :: Swings Both Ways</h1>
+	</div>
+	<p class="clearfix">&nbsp;</p>
+	<p>The one thing that AngularJS or Handlebars cannot offer is server-side templating - extremely important from the context of creating a blog as it means the search engines and other bot-like mechanisms that spawn the internet will have a hard time figuring out what's going on.</p>
+	<p>This is why I eventually ended-up with Mustache, as it allowed me to use the same template tags within my HTML to be processed both by the server before the page is loaded, and via AJAX using JavaScript to re-process the DOM.</p>
+
+	<hr>
+
+	<p>So the markup (in this case) is exactly the same as used with Handlebars:</p>
+	<p>Again separated into 3 blocks to prevent parent braces from spoiling PrettyPrint styling :p</p>
+
+<pre class="prettyprint linenums">
+&#91;&#91;#posts&#93;&#93; // The hash essentially starts a foreach
+</pre>
+
+<pre class="prettyprint linenums">
+&lt;section&gt;
+    &lt;h1&gt;
+        &lt;a href="&#91;&#91;slug&#93;&#93;"&gt;&#91;&#91;title&#93;&#93;&lt;/a&gt;
+        &lt;label class="label label-info pull-right"&gt;&#91;&#91;date&#93;&#93;&lt;/label&gt;
+    &lt;/h1&gt;
+    &#91;&#91;&#91;content&#93;&#93;&#93;
+&lt;/section&gt;
+</pre>
+
+<pre class="prettyprint linenums">
+&#91;&#91;/posts&#93;&#93; // The end of the foreach
+</pre>
+
+	<p style="font-weight: bold">Remember to change the square braces to curly braces!</p>
+
+	<hr>
+
+	<p>In order to use Mustache on the server-side with PHP - we can do something like this:</p>
+
+<pre class="prettyprint linenums">
+&lt;?php
+include('inc/class.mustache.php');
+$m = new MustachePHP();
+$template = file_get_contents('inc/template.mustache.php');
+$mustache = $m->render($template, $results);
+echo $mustache;
+?&gt;
+</pre>
+
+	<hr>
+	<p>To be continued ...</p>
+
+</div>
+
+<div class="tab-pane" id="angular">
+
+	<div class="page-header top">
+		<h1>AngularJS :: Events on Steroids</h1>
+	</div>
+	<p class="clearfix">&nbsp;</p>
+
+	<p>We do not have the time to cover AngularJS events here, but at it's core, it is also a template-engine that utilizes inline data-attributes similar to Bootstrap.</p>
+
+	<hr>
+
+	<h3>Source Code:</h3>
+	<p style="font-weight: bold;">Once again remember to replace the square braces with curly ones!</p>
+
+<pre class="prettyprint linenums">
+&lt;div class="container-narrow" ng-controller="AngularBlog"&gt;
+    &lt;section ng-repeat="post in posts"&gt;
+        &lt;h1&gt;
+            &lt;a href="&#91;&#91;post.slug&#93;&#93;"&gt;&#91;&#91;post.title&#93;&#93;&lt;/a&gt;
+            &lt;label class="label label-info pull-right"&gt;&#91;&#91;post.date&#93;&#93;&lt;/label&gt;
+        &lt;/h1&gt;
+        &lt;div ng-bind-html-unsafe="post.content"&gt;&lt;/div&gt;
+    &lt;/section&gt;
+&lt;/div&gt;
+</pre>
+
+	<p>In the live example, AngularJS gets it's data via the following PHP (in the header):</p>
+
+<pre class="prettyprint linenums">
+// Connect to MongoDB
+$m = new Mongo();
+$db = $m->selectDB('argonauts');
+$collection = new MongoCollection($db, 'posts');
+
+$results = array();
+$all = $collection->find();
+foreach($all as $result){
+    $result['date'] = date('D / M / Y', $result['published']->sec);;
+    $results[] = $result;
+}
+</pre>
+
+	<p>Which then gets slapped around with the following spaghetti-based mishmash:</p>
+
+<pre class="prettyprint linenums">
+&lt;script&gt;
+function AngularBlog($scope) {
+    $scope.posts = [];
+    &lt;?php foreach($results as $result){ ?&gt;
+        $scope.posts.push({
+            title: "&lt;?php echo $result['title']; ?&gt;",
+            content: "&lt;?php echo $result['content']; ?&gt;",
+            slug: "&lt;?php echo $result['slug']; ?&gt;"
+        });
+    &lt;?php } ?&gt;
+};
+&lt;/script&gt;
+</pre>
+
+	<hr>
+	<a href="https://github.com/r1dotmy/klmugs/tree/master/src/klmug-11" class="btn btn-small btn-info pull-right" target="_blank" style="margin-top:5px;">Potentially Live Demo</a>
+
+</div>
+
+	</div>
+</div>
+
+</div><!-- CLOSES TAB CONTENT FROM HEADER -->
+
+<div class="container-narrow">
+	<p class="clearfix">&nbsp;</p>
+	<p class="clearfix">&nbsp;</p>
+	<hr><p class="clearfix">&nbsp;</p>
+	<p>&copy; <?php echo date('Y'); ?> - JSON DOMovan <span class="pull-right"><a href="http://mongodb.my">KL MUG</a></span></p>
+	<p class="clearfix">&nbsp;</p>
+</div>
+
+</div><!-- CLOSES TAB NARROW CONTAINER FROM HEADER -->
+
+</body><!-- CLOSED FROM HEADER -->
+</html><!-- CLOSED FROM HEADER -->

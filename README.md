@@ -21,7 +21,7 @@ We have started a collection of presentations and source-code that the group sha
 * KL MUG 09: [Intro to Mongoose](https://github.com/conancat/klmug-mongoose) - Source Code by [Grey Ang](http://twitter.com/conancat)
 * KL MUG 11: [JSON and The Argonauts](http://r1.my/klmug/11/) - Micro Site by [Mark Smalley](http://twitter.com/m_smalley)
 * KL MUG 11: [JSON and The Argonauts](https://github.com/r1dotmy/klmugs/tree/master/source-code/klmug-11) - Source Code by [Mark Smalley](http://twitter.com/m_smalley)
-* KL MUG 11: [JSON and The Argonauts](#) - Presentation by [Mark Smalley](http://twitter.com/m_smalley)
+* KL MUG 11: [JSON and The Argonauts](http://www.slideshare.net/marksmalley1/json-and-the-argonauts) - Presentation by [Mark Smalley](http://twitter.com/m_smalley)
 * KL MUG 11: [JSON and The Argonauts](https://github.com/r1dotmy/klmugs/tree/master/presentations/klmug-11) - Presentation Source by [Mark Smalley](http://twitter.com/m_smalley)
 * KL MUG 11: [One Year with MongoDB](http://www.slideshare.net/parasquid1/one-year-with-mongo-db-klmug-presentation) - Presentation by [Tristan Gomez](http://twitter.com/parasquid)
 

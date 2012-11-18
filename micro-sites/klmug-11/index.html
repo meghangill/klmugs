@@ -287,15 +287,12 @@ $(document).ready(function(){
 // Function for converting titles to slugs
 function mb_string_to_slug($src)
 {
-    $src = strtolower(trim($src));
-    $src = preg_replace('/[^a-z0-9-]/', '-', $src);
-    $src = preg_replace('/-+/', "-", $src);
-    return $src;
+    $src = preg_replace('/[^a-z0-9-]/', '-', strtolower(trim($src)));
+    return preg_replace('/-+/', "-", $src);
 }
 
 // Array for sending back progress
-$progress['success'] = false;
-$progress['message'] = 'Unable to add post';
+$progress['success'] = false; $progress['message'] = 'Unable to add post';
 
 // Connect to MongoDB
 $m = new Mongo();

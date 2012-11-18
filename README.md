@@ -9,6 +9,7 @@ Malaysia has one of the largest MongoDB communities in South East Asia and many 
 We have started a collection of presentations and source-code that the group shares.
 
 # Table of MUG Contents:
+* KL MUG 05: [Searching MongoDB - Source Code](https://www.dropbox.com/sh/njuy7onxvoft1du/loOZnsf6wp) by [Tristan Gomez](http://twitter.com/parasquid)
 * KL MUG 06: [Over-View - Blog Post](http://www.joshuatly.com/kuala-lumpur-mongodb-user-group-6-notes-recording/) by [Lien Yu](http://twitter.com/joshualty)
 * KL MUG 06: [Over-View - Audio-Recording](http://dl.dropbox.com/u/5677336/KLMUG-2012-05.mp3) by [Lien Yu](http://twitter.com/joshualty)
 * KL MUG 06: [GridFS - Lightening Talk Presentation](http://www.slideshare.net/marksmalley1/serving-images-with-gridfs) by [Mark Smalley](http://twitter.com/m_smalley)

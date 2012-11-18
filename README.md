@@ -23,6 +23,7 @@ We have started a collection of presentations and source-code that the group sha
 * KL MUG 11: [JSON and The Argonauts - Source Code](#) by [Mark Smalley](http://twitter.com/m_smalley)
 * KL MUG 11: [JSON and The Argonauts - Presentation](#) by [Mark Smalley](http://twitter.com/m_smalley)
 * KL MUG 11: [JSON and The Argonauts - Presentation Source](#) by [Mark Smalley](http://twitter.com/m_smalley)
+* KL MUG 11: [One Year with MongoDB - Presentation](http://www.slideshare.net/parasquid1/one-year-with-mongo-db-klmug-presentation) by [Tristan Gomez](http://twitter.com/parasquid)
 
 # More Information on MongoDB:
 * KL MUG [Facebook Group](https://facebook.com/groups/klmug/)

@@ -15,13 +15,13 @@
 
 <pre class="prettyprint linenums">
 &lt;div class="container-narrow" ng-controller="AngularBlog"&gt;
-&lt;section ng-repeat="post in posts"&gt;
-&lt;h1&gt;
-&lt;a href="&#91;&#91;post.slug&#93;&#93;"&gt;&#91;&#91;post.title&#93;&#93;&lt;/a&gt;
-&lt;label class="label label-info pull-right"&gt;&#91;&#91;post.date&#93;&#93;&lt;/label&gt;
-&lt;/h1&gt;
-&lt;div ng-bind-html-unsafe="post.content"&gt;&lt;/div&gt;
-&lt;/section&gt;
+    &lt;section ng-repeat="post in posts"&gt;
+        &lt;h1&gt;
+            &lt;a href="&#91;&#91;post.slug&#93;&#93;"&gt;&#91;&#91;post.title&#93;&#93;&lt;/a&gt;
+            &lt;label class="label label-info pull-right"&gt;&#91;&#91;post.date&#93;&#93;&lt;/label&gt;
+        &lt;/h1&gt;
+        &lt;div ng-bind-html-unsafe="post.content"&gt;&lt;/div&gt;
+    &lt;/section&gt;
 &lt;/div&gt;
 </pre>
 
@@ -36,7 +36,8 @@ $collection = new MongoCollection($db, 'posts');
 $results = array();
 $all = $collection->find();
 foreach($all as $result){
-$results[] = $result;
+    $result['date'] = date('D / M / Y', $result['published']->sec);;
+    $results[] = $result;
 }
 </pre>
 
@@ -44,16 +45,15 @@ $results[] = $result;
 
 <pre class="prettyprint linenums">
 &lt;script&gt;
-var post_count = &lt;?php echo count($results); ?&gt;;
 function AngularBlog($scope) {
-$scope.posts = [];
-&lt;?php foreach($results as $result){ ?&gt;
-$scope.posts.push({
-title: "&lt;?php echo $result['title']; ?&gt;",
-content: "&lt;?php echo $result['content']; ?&gt;",
-slug: "&lt;?php echo $result['slug']; ?&gt;"
-});
-&lt;?php } ?&gt;
+    $scope.posts = [];
+    &lt;?php foreach($results as $result){ ?&gt;
+        $scope.posts.push({
+            title: "&lt;?php echo $result['title']; ?&gt;",
+            content: "&lt;?php echo $result['content']; ?&gt;",
+            slug: "&lt;?php echo $result['slug']; ?&gt;"
+        });
+    &lt;?php } ?&gt;
 };
 &lt;/script&gt;
 </pre>
@@ -74,7 +74,7 @@ slug: "&lt;?php echo $result['slug']; ?&gt;"
 					<?php if(count($results)>1){ ?>
 					</a><?php } ?>
 					<label class="label label-info pull-right">
-						{{post.published}}
+						{{post.date}}
 					</label>
 				</h1>
 			</div>

@@ -3,8 +3,8 @@
 <head>
 <meta charset='utf-8' />
 <title>JSON and The Argonauts</title>
-<script src="js/angular.js"></script>
 <script src="js/jquery.js"></script>
+<script src="js/handlebars.js"></script>
 <script src="js/bootstrap.mb.js"></script>
 <link media="all" type="text/css" href="css/less.css" id="less-css" rel="stylesheet">
 <style>
@@ -32,17 +32,27 @@ table .centered {
 	padding-right: 0;
 	width: 100%;
 }
+.navbar-fixed-top li.active a.btn {
+	color: #757575;
+	background-color: transparent;
+	background-position: 0;
+}
+p.sublte {
+	opacity: 0.5;
+	color: #EEE;
+}
 </style>
 <script>
 
-	var post_count = <?php echo count($results); ?>;
 	function AngularBlog($scope) {
 		$scope.posts = [];
+		$scope.ispage = false;
 		<?php foreach($results as $result){ ?>
 
 			$scope.posts.push({
 				title: "<?php echo $result['title']; ?>",
 				content: "<?php echo $result['content']; ?>",
+				date: "<?php echo $result['date']; ?>",
 				slug: "<?php echo $result['slug']; ?>"
 			});
 
@@ -50,6 +60,8 @@ table .centered {
 	};
 
 	$(document).ready(function(){
+
+		// jQuery AJAX Form Submission
 		$('form.form-fluid').live('submit', function(e){
 			var form = $(this);
 			var data = $(form).serializeArray();
@@ -59,13 +71,30 @@ table .centered {
 				url: 'ajax/insert.php',
 				dataType: 'JSON',
 				type: 'POST',
-				data: json,
+				data: {data:json},
 				success: function(results){
 					if(results.message) alert(results.message);
 					if(results.success) $(form).find('input, textarea').val('');
 				}
 			});
 		});
+
+		// Handlebars magical mishmash
+		var handlebars_data = new Object();
+		handlebars_data.posts = new Array();
+		<?php foreach($results as $result){ ?>
+			handlebars_data.posts.push({
+				title: "<?php echo $result['title']; ?>",
+				content: "<?php echo $result['content']; ?>",
+				date: "<?php echo $result['date']; ?>",
+				slug: "<?php echo $result['slug']; ?>"
+			});
+		<?php } ?>
+		var source = $("#handlebars-controller").html();
+		var template = Handlebars.compile(source);
+		var html = template(handlebars_data);
+		$("#handlebars-controller").html(html);
+		
 	});
 
 </script>
@@ -76,7 +105,15 @@ table .centered {
 
 		<div class="container-narrow">
 			<ul class="nav nav-pills" style="margin:10px 0;">
-				<li class="active"><a href="#json" data-toggle="tab">JSON</a></li>
+
+				<?php if($url != ''){ ?>
+					<li style="display:none;" class="active"><a href="#page" data-toggle="tab">HIDDEN PAGE</a></li>
+					<li><a href="#json" data-toggle="tab">JSON</a></li>
+				<?php }else{ ?>
+					<li style="display:none;"><a href="#page" data-toggle="tab">HIDDEN PAGE</a></li>
+					<li class="active"><a href="#json" data-toggle="tab">JSON</a></li>
+				<?php } ?>
+
 				<li><a href="#mongodb" data-toggle="tab">MongoDB</a></li>
 				<li><a href="#handlebars" data-toggle="tab">Handlebars</a></li>
 				<li><a href="#angular" data-toggle="tab">AngularJS</a></li>
@@ -90,6 +127,7 @@ table .centered {
 <header class="jumbotron subhead" id="overview">
 	<div class="container with-navbar">
 		<h1>JSON and The Argonauts!</h1>
-		<p class="lead">Guided tour of MongoDB with Handlebars, Mustache or AngularJS</p>
+		<p class="lead">Guided tour of MongoDB with Handlebars, Mustache and AngularJS</p>
+		<p class="sublte">-- ( all being used at the same time on the same page ) --</p>
 	</div>
 </header>

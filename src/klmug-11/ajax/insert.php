@@ -24,11 +24,17 @@ $collection->ensureIndex(array('slug'=>1), array('unique'=>true));
 if(isset($_POST['data'])) $data = json_decode($_POST['data']);
 else $data = false;
 
-var_dump($data); exit;
+// Create an array from the JSON data
+$fields = false;
+if(is_array($data)){
+	foreach($data as $field){
+		$fields[$field->name] = $field->value;
+	}
+}
 
 // Could dump into database as is - but want to add a little structure
-if(isset($data['title'])) $title = $data['title'];
-if(isset($data['content'])) $content = $data['content'];
+if(isset($fields['title'])) $title = $fields['title'];
+if(isset($fields['content'])) $content = $fields['content'];
 
 // Check for required fields
 if(!isset($title) || !isset($content)){

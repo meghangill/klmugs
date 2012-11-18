@@ -1,4 +1,8 @@
-<div class="tab-pane active" id="json">
+<?php if($url != ''){ ?>
+	<div class="tab-pane" id="json">
+<?php }else{ ?>
+	<div class="tab-pane active" id="json">
+<?php } ?>
 
 	<div class="page-header top">
 		<h1>JSON :: The Full Story</h1>
@@ -11,9 +15,9 @@
 
 <pre class="prettyprint linenums">
 $data = array(
-'name' => 'Mark Smalley',
-'twitter' => 'm_smalley',
-'blog' => 'smalley.my'
+    'name' => 'Mark Smalley',
+    'twitter' => 'm_smalley',
+    'blog' => 'smalley.my'
 );
 </pre>
 	<p>If we converted that into a JSON array and then echoed or printed the results:</p>
@@ -39,18 +43,18 @@ var_dump($json_data);
 
 <pre class="prettyprint linenums">
 {
-"name" : "Mark Smalley",
-"twitter" : "m_smalley",
-"blog" : "smalley.my"
+    "name" : "Mark Smalley",
+    "twitter" : "m_smalley",
+    "blog" : "smalley.my"
 }
 </pre>
 	<p>JSONp would turn it into something a little like this:</p>
 
 <pre class="prettyprint linenums">
 {jsonp_callback_function({
-"name" : "Mark Smalley",
-"twitter" : "m_smalley",
-"blog" : "smalley.my"
+    "name" : "Mark Smalley",
+    "twitter" : "m_smalley",
+    "blog" : "smalley.my"
 })}
 </pre>
 

@@ -9,9 +9,9 @@
 
 <pre class="prettyprint linenums">
 &lt;form class="form-fluid"&gt;
-&lt;input type="text" id="title" name="title" placeholder="Title" /&gt;
-&lt;textarea id="content" name="content" placeholder="Content"&gt;&lt;/textarea&gt;
-&lt;button type="submit" class="btn btn-info pull-right"&gt;Submit&lt;/button&gt;
+    &lt;input type="text" id="title" name="title" placeholder="Title" /&gt;
+    &lt;textarea id="content" name="content" placeholder="Content"&gt;&lt;/textarea&gt;
+    &lt;button type="submit" class="btn btn-info pull-right"&gt;Submit&lt;/button&gt;
 &lt;/form&gt;
 </pre>
 
@@ -20,22 +20,22 @@
 <pre class="prettyprint linenums">
 &lt;script&gt;
 $(document).ready(function(){
-$('form.form-fluid').live('submit', function(e){
-var form = $(this);
-var data = $(form).serializeArray();
-var json = JSON.stringify(data);
-e.preventDefault();
-$.ajax({
-url: 'ajax/insert.php',
-dataType: 'JSON',
-type: 'POST',
-data: json,
-success: function(results){
-if(results.message) alert(results.message);
-if(results.success) $(form).find('input, textarea').val('');
-}
-});
-});
+    $('form.form-fluid').live('submit', function(e){
+        var form = $(this);
+        var data = $(form).serializeArray();
+        var json = JSON.stringify(data);
+        e.preventDefault();
+        $.ajax({
+            url: 'ajax/insert.php',
+            dataType: 'JSON',
+            type: 'POST',
+            data: json,
+            success: function(results){
+                if(results.message) alert(results.message);
+                if(results.success) $(form).find('input, textarea').val('');
+            }
+        });
+    });
 });
 &lt;/script&gt;
 </pre>
@@ -47,10 +47,10 @@ if(results.success) $(form).find('input, textarea').val('');
 // Function for converting titles to slugs
 function mb_string_to_slug($src)
 {
-$src = strtolower(trim($src));
-$src = preg_replace('/[^a-z0-9-]/', '-', $src);
-$src = preg_replace('/-+/', "-", $src);
-return $src;
+    $src = strtolower(trim($src));
+    $src = preg_replace('/[^a-z0-9-]/', '-', $src);
+    $src = preg_replace('/-+/', "-", $src);
+    return $src;
 }
 
 // Array for sending back progress
@@ -69,6 +69,14 @@ $collection->ensureIndex(array('slug'=>1), array('unique'=>true));
 if(isset($_POST['data'])) $data = json_decode($_POST['data']);
 else $data = false;
 
+// Create an array from the JSON data
+$fields = false;
+if(is_array($data)){
+    foreach($data as $field){
+        $fields[$field->name] = $field->value;
+    }
+}
+
 // Could dump into database as is - but want to add a little structure
 if(isset($data['title'])) $title = $data['title'];
 if(isset($data['content'])) $content = $data['content'];
@@ -76,18 +84,17 @@ if(isset($data['content'])) $content = $data['content'];
 // Check for required fields
 if(!isset($title) || !isset($content)){
 
-$progress['message'] = 'Title and Content Required';
-$post = false;
+    $progress['message'] = 'Title and Content Required';
 
 }else{
 
-// Build new array to store in mongoDB
-$post = array(
-"title" => $title,
-"published" => new MongoDate(strtotime("today")),
-"slug" => mb_string_to_slug($title),
-"content" => $content
-);
+    // Build new array to store in mongoDB
+    $post = array(
+        "title" => $title,
+        "published" => new MongoDate(strtotime("today")),
+        "slug" => mb_string_to_slug($title),
+        "content" => $content
+    );
 
 }
 
@@ -95,8 +102,8 @@ $post = array(
 $success = $collection->insert($post);
 if($success)
 {
-$progress['success'] = true;
-$progress['message'] = 'Successfully added post';
+    $progress['success'] = true;
+    $progress['message'] = 'Successfully added post';
 }
 
 // Sending progress report back as JSON keeps things simple...

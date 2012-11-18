@@ -15,7 +15,6 @@ $collection = new MongoCollection($db, 'posts');
 $collection->ensureIndex(array('slug'=>1), array('unique'=>true));
 
 if(isset($p['s'])){ $slug = $p['s']; }else{ $slug = 'hello-world'; }
-
 if(isset($p['title'])){ $title = $p['title']; }else{ $title = strtotime('today'); }
 if(isset($p['content'])){ $content = $p['content']; }else{ $content = false; }
 

@@ -42,6 +42,20 @@ if($success){
 <script>
 
 	$(document).ready(function(){
+		$('form.form-fluid').live('submit', function(e){
+			e.preventDefault();
+			var data = $(this).serializeArray();
+			$.ajax({
+				url: 'index.php',
+				dataType: 'JSON',
+				type: 'POST',
+				data: data,
+				success: function(results){
+
+				}
+			});
+		});
+
 		$('.ajax1').live('click', function(e){
 			$.ajax({
 				url: 'index.php',

@@ -30,6 +30,8 @@ table .centered {
 	padding-left: 0;
 	padding-right: 0;
 	width: 100%;
+	margin-bottom: 0 !important;
+	position: fixed !important;
 }
 .navbar-fixed-top li.active a.btn {
 	color: #757575;
@@ -46,6 +48,9 @@ p.sublte {
 .navbar-fixed-top li {
 	float: none;
 	display: inline-block;
+}
+.jumbotron .container {
+	padding-top: 45px !important;
 }
 </style>
 </head>
@@ -69,7 +74,8 @@ p.sublte {
 <header class="jumbotron subhead" id="overview">
 	<div class="container with-navbar">
 		<h1>JSON and The Argonauts!</h1>
-		<p class="sublte">-- ( Part 1 of 10 - An Interactive Series Dedicated to Building a CMS ) --</p>
+		<p class="sublte">-- Building a CMS with PHP + MongoDB --</p>
+		<p class="sublte">Part 1 of 10 :: Modern Templating with PHP</p>
 	</div>
 </header>
 
@@ -86,7 +92,7 @@ p.sublte {
 
 	<hr>
 	
-	<p>In order to play with a working version of this site that has an uber-fancy administration panel that also features MongoDB, Handlebars, AngularJS and Mustache all working together on the same page, please <a href="https://github.com/r1dotmy/klmugs/tree/master/src/klmug-11">fork this other source</a> - which is all part of this entire repository.</p>
+	<p>In order to play with a working version of this site that has an uber-fancy administration panel that also features MongoDB, Handlebars, AngularJS and Mustache all working together on the same page, please <a href="https://github.com/r1dotmy/klmugs/tree/master/source-code/klmug-11">fork this other source</a> - which is all part of KL MUG repository.</p>
 	<p>You will then be able to post new blog entries and see how everything fits together in a really messy way. Nonetheless, both the interactive working version and this static micro-site are merely meant to accompany the following presentation:</p>
 	<p>It was only after noticing the effort it had taken to put it all together that I realized it should become part of a series and be something that evolves over time.</p>
 	
@@ -421,60 +427,7 @@ $("#handlebars-controller").html(html);
 </pre>
 
 	<hr>
-	<a href="https://github.com/r1dotmy/klmugs/tree/master/src/klmug-11" class="btn btn-small btn-info pull-right" target="_blank" style="margin-top:5px;">Potentially Live Demo</a>
-
-</div>
-
-<div class="tab-pane" id="mustache">
-
-	<div class="page-header top">
-		<h1>Mustache :: Swings Both Ways</h1>
-	</div>
-	<p class="clearfix">&nbsp;</p>
-	<p>The one thing that AngularJS or Handlebars cannot offer is server-side templating - extremely important from the context of creating a blog as it means the search engines and other bot-like mechanisms that spawn the internet will have a hard time figuring out what's going on.</p>
-	<p>This is why I eventually ended-up with Mustache, as it allowed me to use the same template tags within my HTML to be processed both by the server before the page is loaded, and via AJAX using JavaScript to re-process the DOM.</p>
-
-	<hr>
-
-	<p>So the markup (in this case) is exactly the same as used with Handlebars:</p>
-	<p>Again separated into 3 blocks to prevent parent braces from spoiling PrettyPrint styling :p</p>
-
-<pre class="prettyprint linenums">
-&#91;&#91;#posts&#93;&#93; // The hash essentially starts a foreach
-</pre>
-
-<pre class="prettyprint linenums">
-&lt;section&gt;
-    &lt;h1&gt;
-        &lt;a href="&#91;&#91;slug&#93;&#93;"&gt;&#91;&#91;title&#93;&#93;&lt;/a&gt;
-        &lt;label class="label label-info pull-right"&gt;&#91;&#91;date&#93;&#93;&lt;/label&gt;
-    &lt;/h1&gt;
-    &#91;&#91;&#91;content&#93;&#93;&#93;
-&lt;/section&gt;
-</pre>
-
-<pre class="prettyprint linenums">
-&#91;&#91;/posts&#93;&#93; // The end of the foreach
-</pre>
-
-	<p style="font-weight: bold">Remember to change the square braces to curly braces!</p>
-
-	<hr>
-
-	<p>In order to use Mustache on the server-side with PHP - we can do something like this:</p>
-
-<pre class="prettyprint linenums">
-&lt;?php
-include('inc/class.mustache.php');
-$m = new MustachePHP();
-$template = file_get_contents('inc/template.mustache.php');
-$mustache = $m->render($template, $results);
-echo $mustache;
-?&gt;
-</pre>
-
-	<hr>
-	<p>To be continued ...</p>
+	<a href="https://github.com/r1dotmy/klmugs/tree/master/source-code/klmug-11" class="btn btn-small btn-info pull-right" target="_blank" style="margin-top:5px;">Potentially Live Demo</a>
 
 </div>
 
@@ -538,7 +491,62 @@ function AngularBlog($scope) {
 </pre>
 
 	<hr>
-	<a href="https://github.com/r1dotmy/klmugs/tree/master/src/klmug-11" class="btn btn-small btn-info pull-right" target="_blank" style="margin-top:5px;">Potentially Live Demo</a>
+	<a href="https://github.com/r1dotmy/klmugs/tree/master/source-code/klmug-11" class="btn btn-small btn-info pull-right" target="_blank" style="margin-top:5px;">Potentially Live Demo</a>
+
+</div>
+
+<div class="tab-pane" id="mustache">
+
+	<div class="page-header top">
+		<h1>Mustache :: Swings Both Ways</h1>
+	</div>
+	<p class="clearfix">&nbsp;</p>
+	<p>The one thing that AngularJS or Handlebars cannot offer is server-side templating - extremely important from the context of creating a blog as it means the search engines and other bot-like mechanisms that spawn the internet will have a hard time figuring out what's going on.</p>
+	<p>This is why I eventually ended-up with Mustache, as it allowed me to use the same template tags within my HTML to be processed both by the server before the page is loaded, and via AJAX using JavaScript to re-process the DOM.</p>
+
+	<hr>
+
+	<p>So the markup (in this case) is exactly the same as used with Handlebars:</p>
+	<p>Again separated into 3 blocks to prevent parent braces from spoiling PrettyPrint styling :p</p>
+
+<pre class="prettyprint linenums">
+&#91;&#91;#posts&#93;&#93; // The hash essentially starts a foreach
+</pre>
+
+<pre class="prettyprint linenums">
+&lt;section&gt;
+    &lt;h1&gt;
+        &lt;a href="&#91;&#91;slug&#93;&#93;"&gt;&#91;&#91;title&#93;&#93;&lt;/a&gt;
+        &lt;label class="label label-info pull-right"&gt;&#91;&#91;date&#93;&#93;&lt;/label&gt;
+    &lt;/h1&gt;
+    &#91;&#91;&#91;content&#93;&#93;&#93;
+&lt;/section&gt;
+</pre>
+
+<pre class="prettyprint linenums">
+&#91;&#91;/posts&#93;&#93; // The end of the foreach
+</pre>
+
+	<p style="font-weight: bold">Remember to change the square braces to curly braces!</p>
+
+	<hr>
+
+	<p>In order to use Mustache on the server-side with PHP - we can do something like this:</p>
+
+<pre class="prettyprint linenums">
+&lt;?php
+include('inc/class.mustache.php');
+$m = new MustachePHP();
+$template = file_get_contents('inc/template.mustache.php');
+$mustache = $m->render($template, $results);
+echo $mustache;
+?&gt;
+</pre>
+
+	<hr>
+	<p>To be continued ...</p>
+	<hr>
+	<p>Follow me on <a href="http://twitter.com/m_smalley">Twitter</a> for more updates...</p>
 
 </div>
 
@@ -551,7 +559,7 @@ function AngularBlog($scope) {
 	<p class="clearfix">&nbsp;</p>
 	<p class="clearfix">&nbsp;</p>
 	<hr><p class="clearfix">&nbsp;</p>
-	<p>&copy; <?php echo date('Y'); ?> - JSON DOMovan <span class="pull-right"><a href="http://mongodb.my">KL MUG</a></span></p>
+	<p>&copy; <?php echo date('Y'); ?> - JSON DOMovan <span class="pull-right"><a href="http://r1.my">R1</a></span></p>
 	<p class="clearfix">&nbsp;</p>
 </div>
 

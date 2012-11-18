@@ -10,10 +10,7 @@ Malaysia has one of the largest MongoDB communities in South East Asia and many 
 
 We have started a collection of presentations and source-code that the group shares.
 
-# Table of Contents:
-* [MOSC2012](http://mosc.my) Presentation - [Building High-Performance Web-Applications with PHP and MongoDB](http://www.slideshare.net/r1dotmy/mosc2012-building-highperformance-webapplication-with-php-mongodb) by [Mark Smalley](http://twitter.com/m_smalley)
-* [WebCampKL](http://webcamp.my) CMS Showdown - [Introducing MongoPress - Presentation](http://www.slideshare.net/marksmalley1/introducing-mongopress) by [Mark Smalley](http://twitter.com/m_smalley)
-* [WebCampKL](http://webcamp.my) NoSQL Showdown - [Why I Believe MongoDB is The Dog's Bollocks](http://www.slideshare.net/marksmalley1/why-i-believe-mongodb-is-the-dogs-bollocks) by [Mark Smalley](http://twitter.com/m_smalley)
+# Table of MUG Contents:
 * KL MUG 06: [Over-View - Blog Post](http://www.joshuatly.com/kuala-lumpur-mongodb-user-group-6-notes-recording/) by [Lien Yu](http://twitter.com/joshualty)
 * KL MUG 06: [Over-View - Audio-Recording](http://dl.dropbox.com/u/5677336/KLMUG-2012-05.mp3) by [Lien Yu](http://twitter.com/joshualty)
 * KL MUG 06: [GridFS - Lightening Talk Presentation](http://www.slideshare.net/marksmalley1/serving-images-with-gridfs) by [Mark Smalley](http://twitter.com/m_smalley)
@@ -27,6 +24,11 @@ We have started a collection of presentations and source-code that the group sha
 * KL MUG 11: [JSON and The Argonauts - Source Code](#) by [Mark Smalley](http://twitter.com/m_smalley)
 * KL MUG 11: [JSON and The Argonauts - Presentation](#) by [Mark Smalley](http://twitter.com/m_smalley)
 * KL MUG 11: [JSON and The Argonauts - Presentation Source](#) by [Mark Smalley](http://twitter.com/m_smalley)
+
+# Other MongoDB Presentations in Malaysia:
+* [MOSC2012](http://mosc.my) Presentation - [Building High-Performance Web-Applications with PHP and MongoDB](http://www.slideshare.net/r1dotmy/mosc2012-building-highperformance-webapplication-with-php-mongodb) by [Mark Smalley](http://twitter.com/m_smalley)
+* [WebCampKL](http://webcamp.my) CMS Showdown - [Introducing MongoPress - Presentation](http://www.slideshare.net/marksmalley1/introducing-mongopress) by [Mark Smalley](http://twitter.com/m_smalley)
+* [WebCampKL](http://webcamp.my) NoSQL Showdown - [Why I Believe MongoDB is The Dog's Bollocks](http://www.slideshare.net/marksmalley1/why-i-believe-mongodb-is-the-dogs-bollocks) by [Mark Smalley](http://twitter.com/m_smalley)
 
 # More Information on MongoDB and our Sponsors:
 * [10gen](https://10gen.com)  - Makers of MongoDB

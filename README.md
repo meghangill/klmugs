@@ -1,3 +1,7 @@
+# More Information on MongoDB:
+* KL MUG [Facebook Group](https://facebook.com/groups/klmug/)
+* KL MUG on [Twitter](https://twitter.com/klmug/)
+
 =====
 KL MUG on GitHub
 =====
@@ -30,9 +34,7 @@ We have started a collection of presentations and source-code that the group sha
 * [WebCampKL](http://webcamp.my) CMS Showdown - [Introducing MongoPress - Presentation](http://www.slideshare.net/marksmalley1/introducing-mongopress) by [Mark Smalley](http://twitter.com/m_smalley)
 * [WebCampKL](http://webcamp.my) NoSQL Showdown - [Why I Believe MongoDB is The Dog's Bollocks](http://www.slideshare.net/marksmalley1/why-i-believe-mongodb-is-the-dogs-bollocks) by [Mark Smalley](http://twitter.com/m_smalley)
 
-# More Information on MongoDB and our Sponsors:
+# More Information on our Sponsors:
 * [10gen](https://10gen.com)  - Makers of MongoDB
 * [R1 DOT MY](https://r1.my) - Primary Organizer of KL MUG
 * [MindValley](https://mindvalley.com) - Primary Location for Meetups
-* KL MUG [Facebook Group](https://facebook.com/groups/klmug/)
-* KL MUG on [Twitter](https://twitter.com/klmug/)

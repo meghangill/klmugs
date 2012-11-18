@@ -1,10 +1,4 @@
-# More Information on MongoDB:
-* KL MUG [Facebook Group](https://facebook.com/groups/klmug/)
-* KL MUG on [Twitter](https://twitter.com/klmug/)
-
-=====
-KL MUG on GitHub
-=====
+# KL MUG on GitHub
 
 The Kuala Lumpur MongoDB USer-Group is sponsored by [10gen](http://10gen.com) and [R1](http://r1.my)
 
@@ -28,6 +22,10 @@ We have started a collection of presentations and source-code that the group sha
 * KL MUG 11: [JSON and The Argonauts - Source Code](#) by [Mark Smalley](http://twitter.com/m_smalley)
 * KL MUG 11: [JSON and The Argonauts - Presentation](#) by [Mark Smalley](http://twitter.com/m_smalley)
 * KL MUG 11: [JSON and The Argonauts - Presentation Source](#) by [Mark Smalley](http://twitter.com/m_smalley)
+
+# More Information on MongoDB:
+* KL MUG [Facebook Group](https://facebook.com/groups/klmug/)
+* KL MUG on [Twitter](https://twitter.com/klmug/)
 
 # Other MongoDB Presentations in Malaysia:
 * [MOSC2012](http://mosc.my) Presentation - [Building High-Performance Web-Applications with PHP and MongoDB](http://www.slideshare.net/r1dotmy/mosc2012-building-highperformance-webapplication-with-php-mongodb) by [Mark Smalley](http://twitter.com/m_smalley)

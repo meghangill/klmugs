@@ -14,7 +14,7 @@ We have started a collection of presentations and source-code that the group sha
 * KL MUG 01: [Introducing MongoPress - Presentation](http://www.slideshare.net/marksmalley1/introducing-mongopress) by [Mark Smalley](http://twitter.com/m_smalley)
 * [WebCampKL](http://webcamp.my) Presentation - [Why I Believe MongoDB is The Dog's Bollocks](http://www.slideshare.net/marksmalley1/why-i-believe-mongodb-is-the-dogs-bollocks) by [Mark Smalley](http://twitter.com/m_smalley)
 * KL MUG 09: [Keynote - Presentation](http://www.slideshare.net/marksmalley1/kl-mug-9) by [Mark Smalley](http://twitter.com/m_smalley)
-* [KL MUG 10: [GridFS - Lightening Talk Presentation](http://www.slideshare.net/marksmalley1/serving-images-with-gridfs) by [Mark Smalley](http://twitter.com/m_smalley)
+* KL MUG 10: [GridFS - Lightening Talk Presentation](http://www.slideshare.net/marksmalley1/serving-images-with-gridfs) by [Mark Smalley](http://twitter.com/m_smalley)
 * KL MUG 11: [JSON and The Argonauts - Micro Site](#) by [Mark Smalley](http://twitter.com/m_smalley)
 * KL MUG 11: [JSON and The Argonauts - Source Code](#) by [Mark Smalley](http://twitter.com/m_smalley)
 * KL MUG 11: [JSON and The Argonauts - Presentation](#) by [Mark Smalley](http://twitter.com/m_smalley)
